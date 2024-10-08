@@ -1,2 +1,53 @@
 # Kalkulator-Sederhana-Model-1
 Dibuat menggunakan Google Collabs, Program ini merupakan Kalkulator sederhana model 1 yang menggunakan 2 variabel dan memiliki 4 fungsi yaitu pertambahan, pengurangan, perkalian dan pembagian
+    # add       = tambah
+    # subtract  = kurang
+    # multiply  = kali
+    # divide    = bagi
+
+# fungsi penjumlahan 2 variabel
+def add(num1, num2):
+    return num1 + num2
+
+# fungsi Pengurangan 2 variabel
+def subtract(num1, num2):
+    return num1 - num2
+
+# fungsi Perkalian 2 variabel
+def multiply(num1, num2):
+    return num1 * num2
+
+# fungsi Pembagian 2 variabel
+def divide(num1, num2):
+    return num1 / num2
+
+print("Pilihan operasi perhitungan -\n" \
+        "1. Pertambahan\n" \
+        "2. Pengurangan\n" \
+        "3. Perkalian\n" \
+        "4. Pembagian\n")
+
+
+# input dari pengguna atau user
+select = int(input("Pilih operasi dari 1, 2, 3, 4 :"))
+
+number_1 = int(input("Masukan angka pertama : "))
+number_2 = int(input("Masukan angka kedua : "))
+
+if select == 1:
+    print(number_1, "+", number_2, "=",
+                    add(number_1, number_2))
+
+elif select == 2:
+    print(number_1, "-", number_2, "=",
+                    subtract(number_1, number_2))
+
+elif select == 3:
+    print(number_1, "x", number_2, "=",
+                    multiply(number_1, number_2))
+
+elif select == 4:
+    print(number_1, ":3", number_2, "=",
+                    divide(number_1, number_2))
+else:
+    print("Tidak ditemukan")
