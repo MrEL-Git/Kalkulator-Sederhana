@@ -1,52 +1,64 @@
-# Kalkulator Sederhana model 2 upgrade dari model 1
+# Kalkulator Sederhana Model 2
+import ipywidgets as widgets
+from IPython.display import display
+from traitlets import traitlets
+
     # add       = tambah
     # subtract  = kurang
     # multiply  = kali
     # divide    = bagi
 
-# fungsi penjumlahan 2 variabel
-def add(num1, num2):
-    return num1 + num2
+#Fungsi Kalkulator
+def add(a, b):
+  return a + b
 
-# fungsi Pengurangan 2 variabel
-def subtract(num1, num2):
-    return num1 - num2
+def subtract(a, b):
+  return a - b
 
-# fungsi Perkalian 2 variabel
-def multiply(num1, num2):
-    return num1 * num2
+def multiply(a, b):
+  return a * b
 
-# fungsi Pembagian 2 variabel
-def divide(num1, num2):
-    return num1 / num2
+def divide(a, b):
+  return a / b
 
-print("Pilihan operasi perhitungan -\n" \
-        "1. Pertambahan\n" \
-        "2. Pengurangan\n" \
-        "3. Perkalian\n" \
-        "4. Pembagian\n")
+# Input Tampilan
+num1_input = widgets.FloatText(description="Angka Pertama", style={'description_width': 'initial'})
+operation_input = widgets.Dropdown(options=["+", "-", "x", ":"], description="Pilih Jenis Fungsi:", style={'description_width': 'initial'})
+num2_input = widgets.FloatText(description="Angka Kedua", style={'description_width': 'initial'})
+calculate_button = widgets.Button(description="Calculate", button_style='success')
 
+# Create output tampilan
+result_output = widgets.Output()
 
-# input dari pengguna atau user
-select = int(input("Pilih operasi dari 1, 2, 3, 4 :"))
+# Define Fungsi Kalkulator
+def calculate_button_clicked(b):
+  with result_output:
+    # input dari pengguna
+    num1 = num1_input.value
+    num2 = num2_input.value
+    operator = operation_input.value
 
-number_1 = int(input("Masukan angka pertama : "))
-number_2 = int(input("Masukan angka kedua : "))
+    result = None
 
-if select == 1:
-    print(number_1, "+", number_2, "=",
-                    add(number_1, number_2))
+    # fungsi kalkulasi
+    if operator == "+":
+      result = add(num1, num2)
+    elif operator == "-":
+      result = substract(num1, num2)
+    elif operator == "*":
+        result = multiply(num1, num2)
+    elif operator == "/":
+        if num2 !=0:
+          result = divide(num1, num2)
+        else:
+          result = "hayoo, Tidak bisa di bagi sama angka nol"
+    else:
+        result = "Jawaban tidak ada"
 
-elif select == 2:
-    print(number_1, "-", number_2, "=",
-                    subtract(number_1, number_2))
+      # Tampilan hasil jawaban
+  print("Hasil:", result)
+# fungsi klik tombol kalkulator
+calculate_button.on_click(calculate_button_clicked)
 
-elif select == 3:
-    print(number_1, "x", number_2, "=",
-                    multiply(number_1, number_2))
-
-elif select == 4:
-    print(number_1, ":3", number_2, "=",
-                    divide(number_1, number_2))
-else:
-    print("Tidak ditemukan")
+# Output kalkulator
+display(widgets.VBox([num1_input, operation_input, num2_input, calculate_button, result_output]))
